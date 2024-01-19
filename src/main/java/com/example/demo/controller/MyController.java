@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +22,12 @@ public class MyController {
     @GetMapping("/singleton")
     public String singletonEndpoint() {
     	int hashCode = singletonClass.hashCode();
-        return "Hashcode for singleton class is as follows: "+hashCode;
+    	String currentTime = getCurrentTime();
+        return "Time: "+currentTime+"<br><br>Hashcode for singleton class is as follows: "+hashCode;
+    }
+    
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormat.format(new Date());
     }
 }
